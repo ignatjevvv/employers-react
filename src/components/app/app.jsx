@@ -18,12 +18,30 @@ class App extends Component {
                 {name: 'Carl W.', salary: 5000, increase: false, id: 3},
             ]
         }
+
+        this.maxId = 3
     }
 
     deleteItem = (id) => {
         this.setState(({data}) => {
             return {
                 data: data.filter(item => item.id !== id)
+            }
+        })
+    }
+
+    addItem = (name, salary) => {
+        this.setState(({data}) => {
+            const arrayCopy = [...data];
+            arrayCopy.push({
+                name, 
+                salary, 
+                increase: false, 
+                id: this.maxId++
+            })
+            
+            return {
+                data: arrayCopy
             }
         })
     }
@@ -41,7 +59,8 @@ class App extends Component {
                 <EmployersList 
                     data={this.state.data}
                     onDelete={this.deleteItem}/>
-                <EmployersAddForm/>
+                    
+                <EmployersAddForm onAdd={this.addItem}/>
             </div>
         );
     }
