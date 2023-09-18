@@ -38,7 +38,7 @@ class App extends Component {
                 salary, 
                 increase: false,
                 rise: false, 
-                id: this.maxId + 1
+                id: ++this.maxId
             })
             
             return {
